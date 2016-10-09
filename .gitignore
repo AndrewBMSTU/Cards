@@ -1,0 +1,62 @@
+
+#include "stdafx.h"
+#include <iostream>
+#include <fstream>
+ 
+using namespace std;
+long long int k,i,j,N,Nbuf,good_i,good_j,good_k;
+long long int sum_good[3], Good[50000], numbers[3];
+
+int main()
+{
+	cin >> N;
+	for (i=0; i<3; i++)
+	{
+		cin >> sum_good[i];
+	}
+
+	Nbuf = N-3;
+
+	int sum, sum2, sum3;
+	for(i=1; i<=N-2; i++)
+	{
+	  for (j=i+1; j<=N-1; j++)
+	  {
+		for (k=j+1; k<=N; k++)
+		{
+		 sum = 0;
+		 sum2 = 0;
+		 sum3 = 0;
+		 for (int e=1; e<=N; e++)
+		 {
+		   if ((e!=i) && (e!=j) && (e!=k))
+		   {
+			 sum = sum+e;
+			 sum2 = sum2 + e*e;
+			 sum3 = sum3 + e*e*e;
+		   }
+		 }
+		 if ((sum_good[0] == sum) && (sum_good[1] == sum2) && (sum_good[2] == sum3))
+		 {
+			  good_k = k;
+			  good_j = j;
+			  good_i = i;
+			 break;
+		 }
+		}
+		 if ((sum_good[0] == sum) && (sum_good[1] == sum2) && (sum_good[2] == sum3))
+		 {
+			 break;
+		 }
+	  }
+	     if ((sum_good[0] == sum) && (sum_good[1] == sum2) && (sum_good[2] == sum3))
+		 {
+			 break;
+		 }
+	}
+
+	cout << good_i<<" "<<good_j<<" "<<good_k;
+
+	return 0;
+}
+
